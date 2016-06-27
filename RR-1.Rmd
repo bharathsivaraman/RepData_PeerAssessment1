@@ -29,10 +29,13 @@ activity<-read.csv("activity.csv",stringsAsFactors = FALSE)
 activity.hist<-activity%>%filter(!is.na(steps)) %>%group_by(date)%>%summarize(steps=sum(steps,na.rm=TRUE))
 ggplot(activity.hist)+aes(steps)+geom_histogram(fill="firebrick")+labs(x="Number of steps",y="frequency",title="Histogram of number of steps")
 ```
-Mean steps taken a day
-```{r mean steps,Echo=TRUE}
+
+```{r mean steps,Echo=FALSE}
 activity.summary<-activity.hist%>%summarize(mean=mean(steps,na.rm=TRUE),median=median(steps,na.rm=TRUE))
 ```
+
+Mean steps taken a day `r activity.summary$mean` and Median steps taken a day is `r activity.summary$median`
+
 ###Average daily activity pattern
 ```{r time series,echo=TRUE}
 
